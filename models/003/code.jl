@@ -1,12 +1,10 @@
 using JuMP
 import Gurobi
 
-function get_fb_primal_obj(model::JuMP.Model)
-    return MOIU.get_fallback(unsafe_backend(model), MOI.ObjectiveValue(1))
-end
-
-function get_fb_dual_obj(model::JuMP.Model)
-    return MOIU.get_fallback(unsafe_backend(model), MOI.DualObjectiveValue(1), Float64)
+function get_fb_obj(model::JuMP.Model; obj::Symbol)
+    (obj == :primal) && return MOIU.get_fallback(unsafe_backend(model), MOI.ObjectiveValue(1))
+    (obj == :dual) && return MOIU.get_fallback(unsafe_backend(model), MOI.DualObjectiveValue(1), Float64)
+    error("Unknown objective type: $obj")
 end
 
 model = read_from_file("models/003/model.mps")
@@ -27,7 +25,7 @@ objective_value(model)
 objective_value(model) >= 276997.16415941337
 dual_objective_value(model)
 
-get_fb_primal_obj(model)
-get_fb_dual_obj(model)
+get_fb_obj(model; obj = :primal)
+get_fb_obj(model; obj = :dual)
 
 MOI.get(model, Gurobi.ModelAttribute("DualVio"))
