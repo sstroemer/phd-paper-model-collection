@@ -1,12 +1,14 @@
 using JuMP
-import Gurobi
-import Random, LinearAlgebra
-
+using Gurobi: Gurobi
+using Random: Random
+using LinearAlgebra: LinearAlgebra
 
 function get_fb_obj(model::JuMP.Model; obj::Symbol)
-    (obj == :primal) && return MOIU.get_fallback(unsafe_backend(model), MOI.ObjectiveValue(1))
-    (obj == :dual) && return MOIU.get_fallback(unsafe_backend(model), MOI.DualObjectiveValue(1), Float64)
-    error("Unknown objective type: $obj")
+    (obj == :primal) &&
+        return MOIU.get_fallback(unsafe_backend(model), MOI.ObjectiveValue(1))
+    (obj == :dual) &&
+        return MOIU.get_fallback(unsafe_backend(model), MOI.DualObjectiveValue(1), Float64)
+    return error("Unknown objective type: $obj")
 end
 
 # ------------------------------------------------------------
@@ -34,8 +36,8 @@ optimize!(model)
 BEST = -219572.60804802092
 
 objective_value(model)            # -219572.59920463097
-get_fb_obj(model; obj = :primal)  # -219572.59920463097
-get_fb_obj(model; obj = :dual)    # -219572.62494348988
+get_fb_obj(model; obj=:primal)  # -219572.59920463097
+get_fb_obj(model; obj=:dual)    # -219572.62494348988
 
 # For `PreDual = 1`:
 # objective_value(model)            # -219572.85602469728
