@@ -18,10 +18,10 @@ The model being solved is
 
 $$
 \begin{align}
-    \text{min} & \quad x  &  \\
-    \text{s.t.} & &   \\
-    & & 3 \cdot x \geq d \\
-    && x \geq 0
+    \text{min} & \quad 1 \cdot x & \\
+    \text{s.t.} & & \\
+    & \quad 3 \cdot x \geq d & \\
+    & \quad x \geq 0 &
 \end{align}
 $$
 
@@ -37,20 +37,45 @@ The results given below test the model using:
 
 1. Different values for the right hand side: `rhs` out of `[0.0, 1.0, 1e10]`.
 2. Different ways to extract the dual associated with the "parametric bound" of $x$, by either querying the dual associated with the constraint $(3)$, or the one related to the fixing constraint of $y$ (which essentially does $y = d$).
+3. Passing a "cached" model, vs. constructing it in `direct` mode - c.f. [direct mode](https://jump.dev/JuMP.jl/stable/manual/models/#Direct-mode).
 
 Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing for all trials where `rhs` is set directly, indicated by `constant`), while `sp` ("shadow price") is obtained from the dual of $(3)$. Note that while the naming follows the functionality in `JuMP` we use the `dual(...)` function directly, to showcase that this is not an artifact related to the use of wrapper functions.
 
 ### HiGHS
 
+#### `normal`
+
 | rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | result | rc | sp | rc | sp | rc | sp |
-| dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.3333 | 0.0 | 
-| dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.3333 | 0.0 | 
+| dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.3333 | 0.0 |
+| dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.3333 | 0.0 |
+| dir = normal <br> rhs = constant | - | 0.0823 | - | 0.3333 | - | 0.0 |
+| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 |
+
+#### `direct`
+
+| rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| result | rc | sp | rc | sp | rc | sp |
+| dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.0 | 0.0 | 
+| dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.0 | 0.0 | 
 | dir = normal <br> rhs = constant | - | 0.0823 | - | 0.3333 | - | 0.0 | 
-| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 | 
+| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 |
 
 ### Gurobi
+
+#### `normal`
+
+| rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| result | rc | sp | rc | sp | rc | sp |
+| dir = normal <br> rhs = fixed | 0.0603 | 0.0603 | 0.3333 | 0.3333 | 0.3333 | 0.3333 |
+| dir = reverse <br> rhs = fixed | 0.0603 | -0.0603 | 0.3333 | -0.3333 | 0.3333 | -0.3333 |
+| dir = normal <br> rhs = constant | - | 0.0964 | - | 0.3333 | - | 0.3333 |
+| dir = reverse <br> rhs = constant | - | -0.0964 | - | -0.3333 | - | -0.3333 |
+
+#### `direct`
 
 | rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
