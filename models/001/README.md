@@ -50,7 +50,7 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 
 #### `normal`
 
-**Including $(4)$**  
+**Including \4$$**  
 | rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | dir = normal <br>rhs = fixed <br>presolve = off | 16.61 | 16.61 | 33.33 | 33.33 | 0.0 | 0.0 | 
@@ -105,6 +105,135 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 | dir = normal <br>rhs = fixed <br>presolve = on | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
 | dir = reverse <br>rhs = fixed <br>presolve = on | 33.33 | 0.0 | 33.33 | 0.0 | 33.33 | 0.0 | 
 | dir = normal <br>rhs = constant <br>presolve = on | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+
+### Gurobi
+
+#### `normal`
+
+**Including $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 5.37 | 5.37 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 5.37 | -5.37 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 9.28 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | -9.28 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+
+**Excluding $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+
+#### `direct`
+
+**Including $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 5.37 | 5.37 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 5.37 | -5.37 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 9.28 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | -9.28 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+
+**Excluding $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 33.33 | -33.33 | 33.33 | -33.33 | 33.33 | -33.33 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | -33.33 | - | -33.33 | - | -33.33 | 
+| | | | | | | |
+
+## Results after scaling
+
+This applies a scaling factor of 1e6 to the objective function (which should not affect the results).
+To make the results more readable, the returning values are again scaled back by that factor.
+
+### HiGHS
+
+#### `normal`
+
+**Including \4$$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 16.99 | 16.99 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 16.64 | 0.0 | 33.33 | 0.0 | 33.33 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 28.77 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 0.0 | -0.0 | 0.0 | -0.0 | 0.0 | -0.0 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | -0.0 | - | -0.0 | - | -0.0 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+
+**Excluding $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 33.33 | 0.0 | 33.33 | 0.0 | 33.33 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 0.0 | -0.0 | 0.0 | -0.0 | 0.0 | -0.0 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | -0.0 | - | -0.0 | - | -0.0 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+
+#### `direct`
+
+**Including $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 16.64 | 16.64 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 16.64 | 0.0 | 33.33 | 0.0 | 33.33 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 28.72 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
+| dir = reverse <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+
+**Excluding $(4)$**  
+| rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| dir = normal <br>rhs = fixed <br>presolve = off | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 33.33 | 
+| dir = reverse <br>rhs = fixed <br>presolve = off | 33.33 | 0.0 | 33.33 | 0.0 | 33.33 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = off | - | 33.33 | - | 33.33 | - | 33.33 | 
+| dir = reverse <br>rhs = constant <br>presolve = off | - | 0.0 | - | 0.0 | - | 0.0 | 
+| | | | | | | |
+| dir = normal <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = reverse <br>rhs = fixed <br>presolve = on | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 0.0 | 
+| dir = normal <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
 | dir = reverse <br>rhs = constant <br>presolve = on | - | 0.0 | - | 0.0 | - | 0.0 | 
 | | | | | | | |
 
