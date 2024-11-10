@@ -26,7 +26,7 @@ To account for that, the `NumericFocus` parameter was set to `3` (the highest se
 
 ### Fallbacks
 
-The code makes use of "fallback functions" to calculate primal and dual objective values. These make use of the implementation available in [MathOptInterface](https://github.com/jump-dev/MathOptInterface.jl), which is mostly uesd in situations in which a solver does not properly return the requested result.
+The code makes use of "fallback functions" to calculate primal and dual objective values. These make use of the implementation available in [MathOptInterface](https://github.com/jump-dev/MathOptInterface.jl), which is mostly uesd in situations in which a solver does not properly return the requested result. Instead of querying the solver, it takes the available variable values (either from primal or dual variables), as well as their coefficients in the respective objective functions, and "manually" calculates the resulting objective values.
 
 ## Results
 
