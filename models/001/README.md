@@ -50,7 +50,7 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 
 #### `normal`
 
-**Including \4$$**  
+**Including $(4)$**  
 | rhs<br>result | 0.0<br>rc | 0.0<br>sp | 1.0<br>rc | 1.0<br>sp | 1e10<br>rc | 1e10<br>sp |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | dir = normal <br>rhs = fixed <br>presolve = off | 16.61 | 16.61 | 33.33 | 33.33 | 0.0 | 0.0 | 

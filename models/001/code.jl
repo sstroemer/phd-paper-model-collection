@@ -86,7 +86,7 @@ end
 println("### HiGHS\n")
 
 println("#### `normal`\n")
-println("**Including \\$(4)\$\$**  ")
+println("**Including \$(4)\$**  ")
 make_table(:highs, :normal; free=false)
 println("**Excluding \$(4)\$**  ")
 make_table(:highs, :normal; free=true)
