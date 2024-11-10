@@ -4,7 +4,7 @@ using HiGHS: HiGHS
 
 const GRB_ENV = Gurobi.Env()
 
-function make_base_model(solver::Symbol, mode::Symbol)
+function make_base_model(solver::Symbol, mode::Symbol; free::Bool)
     if solver == :highs
         opt = HiGHS.Optimizer()
         model = mode == :direct ? direct_model(opt) : Model(() -> opt)
@@ -23,14 +23,15 @@ function make_base_model(solver::Symbol, mode::Symbol)
         error("Unknown solver")
     end
 
-    @variable(model, x >= 0)
+    free && @variable(model, x)
+    free || @variable(model, x >= 0)
+
     @objective(model, Min, 1.0 * x)
 
     return model
 end
 
-function make_table(solver::Symbol, mode::Symbol)
-    @info "Making table" solver mode
+function make_table(solver::Symbol, mode::Symbol; free::Bool)
     println("| rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |")
     println("|:---:|:---:|:---:|:---:|:---:|:---:|:---:|")
     println("| result | rc | sp | rc | sp | rc | sp |")
@@ -40,7 +41,7 @@ function make_table(solver::Symbol, mode::Symbol)
                 "| dir = $(dir ? "normal" : "reverse") <br> rhs = $(fixedvar ? "fixed" : "constant") | ",
             )
             for val in [0.0, 1.0, 1e10]
-                model = make_base_model(solver, mode)
+                model = make_base_model(solver, mode; free)
 
                 fixedvar && @variable(model, rhs == val)
                 fixedvar || (rhs = val)
@@ -57,10 +58,20 @@ function make_table(solver::Symbol, mode::Symbol)
             println()
         end
     end
+
+    println("")
 end
 
-make_table(:highs, :normal)
-make_table(:gurobi, :normal)
+println("### HiGHS\n")
 
-make_table(:highs, :direct)
-make_table(:gurobi, :direct)
+println("#### `normal`\n")
+make_table(:highs, :normal; free=false)
+println("#### `direct`\n")
+make_table(:highs, :direct; free=false)
+
+println("### Gurobi\n")
+
+println("#### `normal`\n")
+make_table(:gurobi, :normal; free=false)
+println("#### `direct`\n")
+make_table(:gurobi, :direct; free=false)

@@ -48,10 +48,10 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 | rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | result | rc | sp | rc | sp | rc | sp |
-| dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.3333 | 0.0 |
-| dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.3333 | 0.0 |
-| dir = normal <br> rhs = constant | - | 0.0823 | - | 0.3333 | - | 0.0 |
-| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 |
+| dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.0 | 0.0 | 
+| dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.0 | 0.0 | 
+| dir = normal <br> rhs = constant | - | 0.0823 | - | 0.3333 | - | 0.0 | 
+| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 | 
 
 #### `direct`
 
@@ -61,7 +61,7 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 | dir = normal <br> rhs = fixed | 0.0407 | 0.0407 | 0.3333 | 0.3333 | 0.0 | 0.0 | 
 | dir = reverse <br> rhs = fixed | 0.0407 | 0.0 | 0.3333 | 0.0 | 0.0 | 0.0 | 
 | dir = normal <br> rhs = constant | - | 0.0823 | - | 0.3333 | - | 0.0 | 
-| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 |
+| dir = reverse <br> rhs = constant | - | 0.0 | - | 0.0 | - | 0.0 | 
 
 ### Gurobi
 
@@ -70,10 +70,10 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 | rhs | 0.0 | 0.0 | 1.0 | 1.0 | 1e10 | 1e10 |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | result | rc | sp | rc | sp | rc | sp |
-| dir = normal <br> rhs = fixed | 0.0603 | 0.0603 | 0.3333 | 0.3333 | 0.3333 | 0.3333 |
-| dir = reverse <br> rhs = fixed | 0.0603 | -0.0603 | 0.3333 | -0.3333 | 0.3333 | -0.3333 |
-| dir = normal <br> rhs = constant | - | 0.0964 | - | 0.3333 | - | 0.3333 |
-| dir = reverse <br> rhs = constant | - | -0.0964 | - | -0.3333 | - | -0.3333 |
+| dir = normal <br> rhs = fixed | 0.0603 | 0.0603 | 0.3333 | 0.3333 | 0.3333 | 0.3333 | 
+| dir = reverse <br> rhs = fixed | 0.0603 | -0.0603 | 0.3333 | -0.3333 | 0.3333 | -0.3333 | 
+| dir = normal <br> rhs = constant | - | 0.0964 | - | 0.3333 | - | 0.3333 | 
+| dir = reverse <br> rhs = constant | - | -0.0964 | - | -0.3333 | - | -0.3333 | 
 
 #### `direct`
 
