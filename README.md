@@ -4,6 +4,10 @@ Collection of example models used in the paper "currently without a name" submit
 
 ## Miscellaneous
 
+### Versions
+
+Versions for specific packages, solvers, etc. can matter. Where applicable, the code is accompanied by `Project.toml` and `Manifest.toml` files.
+
 ### Model creation
 
 Models are created - if not stated otherwise - using [JuMP](https://github.com/jump-dev/JuMP.jl).
