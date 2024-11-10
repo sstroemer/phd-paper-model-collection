@@ -4,7 +4,11 @@ This showcases differences in the extraction of "dual results" from a simple mod
 
 ## Code
 
-See [`code.jl`](./code.jl).
+See [`code.jl`](./code.jl). This is using:
+
+- `Gurobi v1.4.0`, using `Gurobi Optimizer version 11.0.3 build v11.0.3rc0`
+- `HiGHS v1.12.0`, using `HiGHS 1.8.0 (git hash: fcfb534146)`
+- `JuMP v1.23.4`
 
 ## Details
 
