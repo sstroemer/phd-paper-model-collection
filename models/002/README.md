@@ -12,6 +12,8 @@ See [`code.jl`](./code.jl). This is using:
 
 ## Details
 
+N/A
+
 ### Model
 
 The model being solved is
