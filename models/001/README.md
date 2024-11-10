@@ -172,7 +172,7 @@ Here `rc` ("reduced cost") is the result obtained from $y$ (therefore missing fo
 
 ## Results after scaling
 
-This applies a scaling factor of 1e6 to the objective function (which should not affect the results).
+This applies a scaling factor of `1e6` to the objective function (which should not affect the results).
 To make the results more readable, the returning values are again scaled back by that factor.
 
 ### HiGHS
