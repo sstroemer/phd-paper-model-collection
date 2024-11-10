@@ -5,6 +5,13 @@ This showcases how [Gurobi's `PreDual` parameter](https://docs.gurobi.com/projec
 - per-iteration objective bounds (as part of the main-problem), or 
 - the "offset" inclusion during the calculation of cuts obtained from a sub-model.
 
+## Code
+
+See [`code.jl`](./code.jl). This is using:
+
+- `Gurobi v1.4.0`, using `Gurobi Optimizer version 11.0.3 build v11.0.3rc0`
+- `JuMP v1.23.4`
+
 ## Details
 
 The model is the same used in [model 003](../003/README.md), which leads to the same target optimal objective value of `276997.16415941337`. Note that similarly the model is again being solved with `NumericFocus = 3`, and that the same fallback functions are used.
