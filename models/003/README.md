@@ -2,6 +2,13 @@
 
 This showcases potential errors, or wrongfully extracted results, on numerically challenging (but small) models solved using an interior point method.
 
+## Code
+
+See [`code.jl`](./code.jl). This is using:
+
+- `Gurobi v1.4.0`, using `Gurobi Optimizer version 11.0.3 build v11.0.3rc0`
+- `JuMP v1.23.4`
+
 ## Details
 
 The supplied model file (see [model.mps](./model.mps)) is the result of a few iterations of cuts being added to a small main-problem. The original decomposed structure originates from a dev version of the framework [calliope](https://github.com/calliope-project/calliope), before the stable `v0.7` release. It comprises a reasonable example for how a model within an iterative solve could potentially look like.
