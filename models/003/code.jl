@@ -7,6 +7,8 @@ function get_fb_obj(model::JuMP.Model; obj::Symbol)
     error("Unknown objective type: $obj")
 end
 
+# ------------------------------------------------------------
+
 model = read_from_file("models/003/model.mps")
 set_optimizer(model, Gurobi.Optimizer)
 set_attribute(model, "Method", 2)
