@@ -1,0 +1,13 @@
+[project]
+name = "007"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "calliope",
+    "gurobipy==11.0.3",
+]
+
+[tool.uv.sources]
+calliope = { git = "https://github.com/calliope-project/calliope", rev = "36f62578c679f5503763857bb5ebfeb5cb49971f" }
