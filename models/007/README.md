@@ -92,6 +92,12 @@ Note that the `JCD` formulation is also used by [Dualization.jl](https://jump.de
 
 The reference chosen for `GEN` is arbitrary - many others, and more "popular" ones exist. Many however only describe a subset of possible ways to write the primal form of the LP (e.g., only using $Ax = b$, or assuming non-negativity on all $x$, etc.). In the end, these formulations can all be translated into each other - but maybe inducing an additional "cost" (e.g., slack variables, etc.).
 
+It is important to note that these results only - for a very specific subset of settings and choices - evaluate the (first) solution of a given model. Besides many others, an important, but harder to quantify in an isolated experiment, factor that is completely left out is the "quality" of the resulting dual solution. This might heavily influence the convergence of a, e.g., Benders decomposition.
+
+### Plots
+
 ![Simplex results](./out/analysis_plot_simplex.svg "Simplex results")
 
 ![IPM results](./out/analysis_plot_ipm.svg "IPM results")
+
+TODO: fix formatting with blue style!
