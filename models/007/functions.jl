@@ -23,17 +23,19 @@ function run_model(model::JuMP.Model, attributes::Vector{<:Pair}, f_opt)
 
     if !is_solved_and_feasible(model)
         if (solver_name(model) == "HiGHS") &&
-           (alg == :ipm) &&
-           (termination_status(model) == MOI.OTHER_ERROR)
+            (alg == :ipm) &&
+            (termination_status(model) == MOI.OTHER_ERROR)
             # We "fake" check for IPM solves that may be used (but with caution).
             if (result_count(model) == 1) &&
-               (raw_status(model) == "kHighsModelStatusUnknown")
+                (raw_status(model) == "kHighsModelStatusUnknown")
                 try
                     # The "fake" indication is: `MOI.OTHER_RESULT_STATUS`.
-                    return solve_time(model),
-                    barrier_iterations(model),
-                    objective_value(model),
-                    MOI.OTHER_RESULT_STATUS
+                    return (
+                        solve_time(model),
+                        barrier_iterations(model),
+                        objective_value(model),
+                        MOI.OTHER_RESULT_STATUS,
+                    )
                 catch
                     return -1, -1, -1, termination_status(model)
                 end
@@ -47,13 +49,11 @@ function run_model(model::JuMP.Model, attributes::Vector{<:Pair}, f_opt)
 
     if alg == :simplex
         return solve_time(model),
-        simplex_iterations(model),
-        objective_value(model),
+        simplex_iterations(model), objective_value(model),
         termination_status(model)
     elseif alg == :ipm
         return solve_time(model),
-        barrier_iterations(model),
-        objective_value(model),
+        barrier_iterations(model), objective_value(model),
         termination_status(model)
     else
         return solve_time(model), -1, objective_value(model), termination_status(model)
@@ -96,14 +96,7 @@ function _prepare_jump_conic_dual(filename::String)
     b_3 = lpmd.b_lower[indices[3]]  # `b_lower == b_upper` here
 
     _prepare_jump_conic_dual_cache[filename] = (
-        a_0 = a_0,
-        b_0 = b_0,
-        A_1 = A_1,
-        A_2 = A_2,
-        A_3 = A_3,
-        b_1 = b_1,
-        b_2 = b_2,
-        b_3 = b_3,
+        a_0=a_0, b_0=b_0, A_1=A_1, A_2=A_2, A_3=A_3, b_1=b_1, b_2=b_2, b_3=b_3
     )
 
     return _prepare_jump_conic_dual_cache[filename]
@@ -120,13 +113,10 @@ function create_jump_conic_dual(filename::String)
     y_3 = @variable(dual_model, [1:size(data.A_3, 1)])
 
     @constraint(
-        dual_model,
-        data.A_1' * y_1 .+ data.A_2' * y_2 .+ data.A_3' * y_3 .== data.a_0
+        dual_model, data.A_1' * y_1 .+ data.A_2' * y_2 .+ data.A_3' * y_3 .== data.a_0
     )
     @objective(
-        dual_model,
-        Max,
-        data.b_1' * y_1 + data.b_2' * y_2 + data.b_3' * y_3 + data.b_0
+        dual_model, Max, data.b_1' * y_1 + data.b_2' * y_2 + data.b_3' * y_3 + data.b_0
     )
 
     return dual_model
@@ -172,17 +162,17 @@ function _prepare_general_dual(filename::String)
     A = vcat(A_M_L, A_M_E, A_M_G)
 
     _prepare_general_dual_cache[filename] = (
-        c = c,
-        A = A,
-        A_M_L = A_M_L,
-        A_M_E = A_M_E,
-        A_M_G = A_M_G,
-        b_M_L = b_M_L,
-        b_M_E = b_M_E,
-        b_M_G = b_M_G,
-        D_L = D_L,
-        D_F = D_F,
-        D_G = D_G,
+        c=c,
+        A=A,
+        A_M_L=A_M_L,
+        A_M_E=A_M_E,
+        A_M_G=A_M_G,
+        b_M_L=b_M_L,
+        b_M_E=b_M_E,
+        b_M_G=b_M_G,
+        D_L=D_L,
+        D_F=D_F,
+        D_G=D_G,
     )
 
     return _prepare_general_dual_cache[filename]
@@ -233,8 +223,7 @@ function analyse_models(filenames)
             write(
                 io,
                 join(
-                    (sn, "jump_conic_dual", _get_stats(create_jump_conic_dual(fn))...),
-                    ",",
+                    (sn, "jump_conic_dual", _get_stats(create_jump_conic_dual(fn))...), ","
                 ) * "\n",
             )
         end

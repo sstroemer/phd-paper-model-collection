@@ -145,18 +145,19 @@ for file in models
                 numerical_issues = false
                 presolve_disabled = false
 
-                for itry = 1:N
+                for itry in 1:N
                     while true
-                        res = run_model(
-                            (
-                                mode == :primal ? read_from_file(file) :
-                                mode == :jump_conic_dual ?
-                                create_jump_conic_dual(file) :
-                                mode == :general ? create_general_dual(file) : nothing
-                            ),
-                            tc,
-                            f_opt,
-                        )
+                        res = run_model((
+                            if mode == :primal
+                                read_from_file(file)
+                            elseif mode == :jump_conic_dual
+                                create_jump_conic_dual(file)
+                            elseif mode == :general
+                                create_general_dual(file)
+                            else
+                                nothing
+                            end
+                        ), tc, f_opt)
 
                         if (itry == 1) && (res[4] != MOI.OPTIMAL)
                             numerical_issues = true
@@ -218,7 +219,7 @@ for file in models
                                 "│" => ",",
                                 " " => "",
                             ),
-                        )[2:(end-1)] * "\n",
+                        )[2:(end - 1)] * "\n",
                     )
                 end
 
