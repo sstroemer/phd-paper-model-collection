@@ -99,5 +99,3 @@ It is important to note that these results only - for a very specific subset of 
 ![Simplex results](./out/analysis_plot_simplex.svg "Simplex results")
 
 ![IPM results](./out/analysis_plot_ipm.svg "IPM results")
-
-TODO: fix formatting with blue style!
