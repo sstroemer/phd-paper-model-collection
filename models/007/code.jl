@@ -100,7 +100,7 @@ test_cases = OrderedDict(
 
 # Track experiment number, and allow skipping (to re-start from a specific experiment).
 i_tc = 1
-start_at = 140
+start_at = 1
 
 # Write CSV file header (unless we are resuming something).
 if start_at == 1
@@ -124,7 +124,7 @@ for file in models
                 size = parse(Int, split(sn, ".")[1])
                 if size > 3624
                     (("solver" => "simplex") in tc) && continue
-                    (("Method" => 0 in tc) || ("Method" => 1 in tc)) && continue
+                    ((("Method" => 0) in tc) || (("Method" => 1) in tc)) && continue
                 end
 
                 # Check, if we should skip this experiment.
